@@ -50,6 +50,11 @@ class EBMLParserBuffer {
     // 读n字节
     private read(n: number, number: boolean = true) {
         let r: number | DataView
+        const last = this.data.byteLength - this.index
+        if (n > last) {
+            // warn no data to read , in case of outside set n to last
+            n = last
+        }
         if (!number) {
             r = new DataView(this.data.buffer, this.data.byteOffset + this.index, n)
             this.index += n;
