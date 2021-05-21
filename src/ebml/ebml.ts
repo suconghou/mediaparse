@@ -90,8 +90,11 @@ class EBMLParserBuffer {
         return this;
     }
 
-    // 传入一个字节8位, 判断前多少个bit是0, 返回值可能为 0 - 7
+    // 传入一个字节8位, 判断前多少个bit是0, 返回值可能为 0 - 8
     private static vIntWidth(s: number) {
+        if (s < 1) {
+            return 8
+        }
         let width = 0
         for (width = 0; width < 8; width++) {
             if (s >= 2 ** (7 - width)) {
