@@ -46,7 +46,7 @@ export default class {
             // 下面是 starts_with_SAP, SAP_type, SAP_delta_time 没用到,这里忽略掉
             pos += 4
             const startRange = offset
-            const endRange = offset + reference_size - 1;
+            const endRange = offset + reference_size;
             references.push({
                 "reference_type": reference_type,
                 "reference_size": reference_size,

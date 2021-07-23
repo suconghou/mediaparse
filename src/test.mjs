@@ -1,18 +1,18 @@
-import parser from './index.js'
+import parser from '../bundle.mjs'
 
 import { createHash } from 'crypto'
 import { readFileSync } from 'fs'
 
 
 function test_sidx() {
-    const f = "/Users/admin/Downloads/140.mp4"
+    const f = "/tmp/160.mp4"
     const file = readFileSync(f)
     console.info(file.length)
     var md5file = createHash('md5');
     md5file.update(file)
     console.info(md5file.digest("hex"))
-    const start = 668;
-    const maxlen = 236;
+    const start = 739;
+    const maxlen = 1952;
     let data1 = file.slice(start, start + maxlen);
     var md5sum = createHash('md5');
     md5sum.update(data1)
@@ -20,7 +20,7 @@ function test_sidx() {
     console.info("parse len", data1.length)
     const data = new DataView(data1.buffer, start, maxlen)
     console.info("byteLength", data.byteLength)
-    console.info(new parser(data, true).parse())
+    console.info(new parser(data, true).parse(2690))
 }
 
 
@@ -50,6 +50,6 @@ function readUInt(data,length,pos) {
     return value;
 }
 
-// test_sidx();
-test_ebml();
+test_sidx();
+// test_ebml();
 
